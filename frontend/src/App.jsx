@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function App() {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("Connecting to backend...");
 
   useEffect(() => {
     axios
@@ -12,6 +12,7 @@ function App() {
       })
       .catch((error) => {
         console.error("API Error:", error);
+        setMessage("Failed to connect to backend");
       });
   }, []);
 
