@@ -1,27 +1,66 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
+
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Dashboard from "./components/Dashboard";
 
 function App() {
-  const [message, setMessage] = useState("Connecting to backend...");
 
-  useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/")
-      .then((response) => {
-        setMessage(response.data.message);
-      })
-      .catch((error) => {
-        console.error("API Error:", error);
-        setMessage("Failed to connect to backend");
-      });
-  }, []);
+  const [user, setUser] = useState(() => {
+
+    const savedUser =
+      localStorage.getItem("user");
+
+    return savedUser
+      ? JSON.parse(savedUser)
+      : null;
+  });
+
+  const [page, setPage] = useState("login");
+
+  const handleLogin = (userData) => {
+
+    setUser(userData);
+  };
+
+  const handleLogout = () => {
+
+    localStorage.removeItem("user");
+
+    setUser(null);
+    setPage("login");
+  };
+
+  if (user) {
+
+    return (
+      <Dashboard
+        user={user}
+        onLogout={handleLogout}
+      />
+    );
+
+  }
+
+  if (page === "register") {
+
+    return (
+      <Register
+        onSwitchToLogin={() =>
+          setPage("login")
+        }
+      />
+    );
+
+  }
 
   return (
-    <div>
-      <h1>Personal Finance AI</h1>
-
-      <p>{message}</p>
-    </div>
+    <Login
+      onLogin={handleLogin}
+      onSwitchToRegister={() =>
+        setPage("register")
+      }
+    />
   );
 }
 
