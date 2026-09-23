@@ -9,6 +9,7 @@ import FinancialInsights from "./FinancialInsights";
 import TransactionForm from "./TransactionForm";
 import TransactionList from "./TransactionList";
 import ExpensePrediction from "./ExpensePrediction";
+import FinancialRecommendation from "./FinancialRecommendation";
 
 function Dashboard() {
 
@@ -110,8 +111,19 @@ function Dashboard() {
         <>
             <nav className="navbar">
                 <div className="logo">Personal Finance AI</div>
+
                 <div className="navbar-right">
                     <span>👤 {user?.name || "User"}</span>
+
+                    <button
+                        className="logout-button"
+                        onClick={() => {
+                            localStorage.removeItem("user");
+                            window.location.reload();
+                        }}
+                    >
+                        Logout
+                    </button>
                 </div>
             </nav>
 
@@ -130,6 +142,8 @@ function Dashboard() {
             />
 
             <ExpensePrediction />
+
+            <FinancialRecommendation />
 
             <div className="charts-grid">
 
