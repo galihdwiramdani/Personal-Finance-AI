@@ -11,17 +11,11 @@ import TransactionList from "./TransactionList";
 import ExpensePrediction from "./ExpensePrediction";
 import FinancialRecommendation from "./FinancialRecommendation";
 
-function Dashboard() {
+function Dashboard({ user, onLogout }) {
 
     const [transactions, setTransactions] = useState([]);
 
     const [loading, setLoading] = useState(true);
-
-    const storedUser = localStorage.getItem("user");
-
-    const user = storedUser
-        ? JSON.parse(storedUser)
-        : null;
 
     const userId = user?.id;
 
@@ -117,10 +111,7 @@ function Dashboard() {
 
                     <button
                         className="logout-button"
-                        onClick={() => {
-                            localStorage.removeItem("user");
-                            window.location.reload();
-                        }}
+                        onClick={onLogout}
                     >
                         Logout
                     </button>
