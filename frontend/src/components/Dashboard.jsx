@@ -10,6 +10,7 @@ import TransactionForm from "./TransactionForm";
 import TransactionList from "./TransactionList";
 import ExpensePrediction from "./ExpensePrediction";
 import FinancialRecommendation from "./FinancialRecommendation";
+import AnomalyDetection from "./AnomalyDetection";
 
 function Dashboard({ user, onLogout }) {
 
@@ -168,8 +169,8 @@ function Dashboard({ user, onLogout }) {
             />
 
             <ExpensePrediction />
-
             <FinancialRecommendation />
+            <AnomalyDetection transactions={transactions}/>
 
             <div className="charts-grid">
 
