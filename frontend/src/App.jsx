@@ -6,20 +6,27 @@ import Dashboard from "./components/Dashboard";
 
 function App() {
     const [user, setUser] = useState(() => {
-        const savedUser = localStorage.getItem("user");
+    const savedUser = localStorage.getItem("user");
 
-        if (!savedUser) {
-            return null;
-        }
+    if (!savedUser) {
+        return null;
+    }
 
-        try {
-            return JSON.parse(savedUser);
-        } catch (error) {
-            console.error("Invalid user data:", error);
+    try {
+        const parsedUser = JSON.parse(savedUser);
+
+        if (!parsedUser || !parsedUser.id) {
             localStorage.removeItem("user");
             return null;
         }
-    });
+
+        return parsedUser;
+    } catch (error) {
+        console.error("Invalid user data:", error);
+        localStorage.removeItem("user");
+        return null;
+    }
+});
 
     const [page, setPage] = useState("login");
 
@@ -35,7 +42,7 @@ function App() {
         setPage("login");
     };
 
-    if (user) {
+    if (user && user.id) {
         return (
             <Dashboard
                 user={user}
