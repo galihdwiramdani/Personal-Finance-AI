@@ -22,8 +22,6 @@ function Login({ onLogin, onSwitchToRegister }) {
 
       const user = response.data.user;
 
-      localStorage.setItem("user", JSON.stringify(user));
-
       onLogin(user);
     } catch (error) {
       console.error(error);
