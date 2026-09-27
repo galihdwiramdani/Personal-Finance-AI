@@ -204,23 +204,6 @@ select:focus {
   gap: 12px;
 }
 
-.logout-button {
-  border: none;
-
-  background: #fee2e2;
-
-  color: #dc2626;
-
-  padding: 8px 14px;
-
-  border-radius: 8px;
-
-  cursor: pointer;
-
-  font-weight: 600;
-}
-
-
 /* =========================
    DASHBOARD
 ========================= */
@@ -477,10 +460,6 @@ select:focus {
 
   .navbar {
     padding: 0 20px;
-  }
-
-  .navbar-right span {
-    display: none;
   }
 
   .stats-grid {
@@ -761,4 +740,144 @@ select:focus {
 
 .logout-button:hover {
     opacity: 0.85;
+}
+
+/* =========================
+   PROFILE
+========================= */
+.navbar-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.profile-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.profile-button:hover {
+    background: #f3f4f6;
+}
+
+.profile-icon {
+    font-size: 20px;
+}
+
+.profile-name {
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.profile-arrow {
+    font-size: 10px;
+    margin-left: 4px;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 280px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    z-index: 1000;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f4f6;
+    font-size: 22px;
+}
+
+.profile-header h3 {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+}
+
+.profile-header p {
+    margin: 0;
+    font-size: 13px;
+    color: #6b7280;
+    word-break: break-word;
+}
+
+.profile-divider {
+    height: 1px;
+    background: #e5e7eb;
+    margin: 14px 0;
+}
+
+.dropdown-logout {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #f3f4f6;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: left;
+}
+
+.dropdown-logout:hover {
+    background: #e5e7eb;
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 0 16px;
+    }
+
+    .navbar-right {
+        display: flex;
+        align-items: center;
+    }
+
+    .profile-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 8px;
+        min-width: 42px;
+        min-height: 42px;
+    }
+
+    .profile-icon {
+        display: inline-flex;
+        font-size: 20px;
+    }
+
+    .profile-arrow {
+        display: inline-flex;
+        font-size: 9px;
+    }
+
+    .profile-name {
+        display: none;
+    }
 }

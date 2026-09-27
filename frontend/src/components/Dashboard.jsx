@@ -14,9 +14,8 @@ import FinancialRecommendation from "./FinancialRecommendation";
 function Dashboard({ user, onLogout }) {
 
     const [transactions, setTransactions] = useState([]);
-
     const [loading, setLoading] = useState(true);
-
+    const [showProfile, setShowProfile] = useState(false);
     const userId = user?.id;
 
     const fetchTransactions = async () => {
@@ -105,16 +104,52 @@ function Dashboard({ user, onLogout }) {
         <>
             <nav className="navbar">
                 <div className="logo">Personal Finance AI</div>
-
                 <div className="navbar-right">
-                    <span>👤 {user?.name || "User"}</span>
-
                     <button
-                        className="logout-button"
-                        onClick={onLogout}
+                        className="profile-button"
+                        onClick={() => setShowProfile(!showProfile)}
                     >
-                        Logout
+                        <span className="profile-icon">👤</span>
+
+                        <span className="profile-name">
+                            {user?.name || "User"}
+                        </span>
+
+                        <span className="profile-arrow">
+                            {showProfile ? "▲" : "▼"}
+                        </span>
                     </button>
+
+                    {showProfile && (
+                        <div className="profile-dropdown">
+
+                            <div className="profile-header">
+                                <div className="profile-avatar">
+                                    👤
+                                </div>
+
+                                <div>
+                                    <h3>
+                                        {user?.name || "User"}
+                                    </h3>
+
+                                    <p>
+                                        {user?.email || "No email"}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="profile-divider"></div>
+
+                            <button
+                                className="dropdown-logout"
+                                onClick={onLogout}
+                            >
+                                🚪 Logout
+                            </button>
+
+                        </div>
+                    )}
                 </div>
             </nav>
 
